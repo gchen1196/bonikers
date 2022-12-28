@@ -1,0 +1,21 @@
+{
+  "name": "bonikers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "docker-compose up --build --remove-orphans",
+    "stop": "docker stop $(docker ps -aq)",
+    "drop:volumes": "docker stop $(docker ps -aq); docker rm $(docker ps -aq); docker volume rm $(docker volume ls -f dangling=true -q)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gchen1196/bonikers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gchen1196/bonikers/issues"
+  },
+  "homepage": "https://github.com/gchen1196/bonikers#readme"
+}
