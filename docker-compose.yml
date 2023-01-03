@@ -1,12 +1,23 @@
-version: '3.3'
-
-volumes:
-  postgres_data:
+version: "3.3"
 
 services:
+  app:
+    image: node:16
+    container_name: bonikers-app
+    working_dir: /app
+    restart: unless-stopped
+    stdin_open: true
+    command: bash -c "npm run start"
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_SOCKET_URL=http://localhost:3001
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/app
   api:
     image: node:16
-    container_name: api
+    container_name: bonikers-api
     working_dir: /api
     restart: unless-stopped
     stdin_open: true
@@ -15,8 +26,6 @@ services:
       - NODE_ENV=development
       - PORT=3001
     ports:
-      - '3001:3001'
+      - "3001:3001"
     volumes:
       - ./api:/api
-
-  
